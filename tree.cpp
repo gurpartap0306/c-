@@ -17,8 +17,8 @@ public:
   void in(node *q);
   void pre(node *q);
   void post(node *q);
-//  int operator == (tree t);
-//  int compare (node *pp,node *qq);
+  bool operator == (tree t);
+  bool compare (node *pp,node *qq);
 //  void operator =(tree t);
 //  node* copy (node *q);
 };
@@ -115,6 +115,29 @@ void tree::post(node *q){
   }
 }
 
+  bool tree::operator==(tree t){
+    bool flag;
+    flag=compare(p,t.p);
+    return (flag);
+  }
+
+  bool tree::compare(node *pp,node *qq){
+    static bool flag;
+    if((pp==NULL)&&(qq==NULL))
+      flag=true;
+    else{
+      if((pp!=NULL)&&(qq!=NULL)){
+        if(pp->data!=qq->data)
+          flag=false;
+        else{
+          compare(pp->l,qq->l);
+          compare(pp->r,qq->r);
+        }
+      }
+    }
+  return(flag);
+}
+
 int main(){
   tree tt;
   int i,num;
@@ -125,6 +148,8 @@ int main(){
   }
 
   tt.traverse();
+  if(tt==tt)
+  cout<<endl<<"hello";
 
   return 0;
 }
