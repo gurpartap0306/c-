@@ -19,8 +19,8 @@ public:
   void post(node *q);
   bool operator == (tree t);
   bool compare (node *pp,node *qq);
-//  void operator =(tree t);
-//  node* copy (node *q);
+  void operator =(tree t);
+  node* copy (node *q);
 };
 
 tree::tree(){
@@ -138,8 +138,25 @@ void tree::post(node *q){
   return(flag);
 }
 
+void tree::operator=(tree t){
+  p=copy(t.p);
+}
+
+tree::node* tree::copy(node *q){
+  node *t;
+  if(q!=NULL){
+    t=new node;
+    t->data=q->data;
+    t->l=copy(q->l);
+    t->r=copy(q->r);
+    return (t);
+  }
+  else
+    return (NULL);
+}
+
 int main(){
-  tree tt;
+  tree tt,ss;
   int i,num;
   for(i=0;i<10;i++){
     cout<<endl<<"enter elements to be inserted in tree";
@@ -148,8 +165,9 @@ int main(){
   }
 
   tt.traverse();
-  if(tt==tt)
-  cout<<endl<<"hello";
+  ss=tt;
+  if(tt==ss)
+  cout<<endl<<"tree is equal"<<endl;
 
   return 0;
 }
