@@ -114,7 +114,7 @@ void tree::post(node *q){
     cout<<"\t"<<q->data;
   }
 }
-
+//operator overloading(==)
   bool tree::operator==(tree t){
     bool flag;
     flag=compare(p,t.p);
@@ -137,7 +137,7 @@ void tree::post(node *q){
     }
   return(flag);
 }
-
+//operator overloading(=)
 void tree::operator=(tree t){
   p=copy(t.p);
 }
